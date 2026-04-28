@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-highest": "#e0e3e5",
+                        "background": "#f7f9fb",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-tertiary-container": "#eef0ff",
+                        "primary-container": "#2563eb",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#4d556b",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface": "#f7f9fb",
+                        "primary": "#004ac6",
+                        "secondary": "#505f76",
+                        "on-primary-container": "#eeefff",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline": "#737686",
+                        "tertiary-container": "#656d84",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-container": "#54647a",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface-container": "#eceef0",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "secondary-fixed": "#d3e4fe",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-surface": "#2d3133",
+                        "surface-tint": "#0053db",
+                        "on-tertiary-fixed": "#131b2e",
+                        "surface-bright": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "outline-variant": "#c3c6d7",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "margin": "32px",
+                        "xl": "48px",
+                        "base": "4px",
+                        "gutter": "20px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-slate-50/80 backdrop-blur-md border-b border-slate-200 docked full-width top-0 z-50 sticky shadow-sm">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight text-blue-700">AguasPorQueAquiAsaltan</span>
+<nav class="hidden md:flex gap-6 font-['Inter'] antialiased">
+<a class="text-slate-600 hover:text-blue-500 transition-colors" href="#">Map</a>
+<a class="text-blue-600 font-semibold border-b-2 border-blue-600 pb-1" href="#">Report</a>
+<a class="text-slate-600 hover:text-blue-500 transition-colors" href="#">Admin</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="p-2 hover:bg-slate-100 rounded-md transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined text-slate-600">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-md transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined text-slate-600">account_circle</span>
+</button>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md active:scale-95 duration-150 transition-all">
+                    Report Incident
+                </button>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-start py-xl px-gutter">
+<div class="w-full max-w-2xl bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(15,23,42,0.05)] border border-outline-variant/30 overflow-hidden">
+<!-- Step Tracker -->
+<div class="bg-surface-container-low px-lg py-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<div class="flex flex-col items-center gap-xs">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-label-sm">1</div>
+<span class="text-label-sm text-primary">Tipo</span>
+</div>
+<div class="flex-grow h-[2px] bg-primary mx-xs mb-sm"></div>
+<div class="flex flex-col items-center gap-xs opacity-40">
+<div class="w-8 h-8 rounded-full bg-outline-variant text-on-surface flex items-center justify-center text-label-sm">2</div>
+<span class="text-label-sm">Mapa</span>
+</div>
+<div class="flex-grow h-[2px] bg-outline-variant mx-xs mb-sm"></div>
+<div class="flex flex-col items-center gap-xs opacity-40">
+<div class="w-8 h-8 rounded-full bg-outline-variant text-on-surface flex items-center justify-center text-label-sm">3</div>
+<span class="text-label-sm">Fecha</span>
+</div>
+<div class="flex-grow h-[2px] bg-outline-variant mx-xs mb-sm"></div>
+<div class="flex flex-col items-center gap-xs opacity-40">
+<div class="w-8 h-8 rounded-full bg-outline-variant text-on-surface flex items-center justify-center text-label-sm">4</div>
+<span class="text-label-sm">Evidencia</span>
+</div>
+<div class="flex-grow h-[2px] bg-outline-variant mx-xs mb-sm"></div>
+<div class="flex flex-col items-center gap-xs opacity-40">
+<div class="w-8 h-8 rounded-full bg-outline-variant text-on-surface flex items-center justify-center text-label-sm">5</div>
+<span class="text-label-sm">Privacidad</span>
+</div>
+</div>
+</div>
+<!-- Form Content -->
+<div class="p-lg space-y-xl">
+<!-- Header -->
+<div class="text-center space-y-xs">
+<h1 class="font-headline-md text-on-surface">Reportar Incidente</h1>
+<p class="font-body-md text-secondary">Proporciona los detalles para ayudar a la comunidad.</p>
+</div>
+<!-- Step 1: Incident Type -->
+<div class="space-y-md">
+<label class="font-label-md text-on-surface block mb-sm">¿Qué sucedió?</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-sm">
+<button class="flex flex-col items-center gap-sm p-md border border-primary bg-primary-fixed text-on-primary-fixed rounded-xl transition-all">
+<span class="material-symbols-outlined text-headline-md">gavel</span>
+<span class="font-label-md">Robo</span>
+</button>
+<button class="flex flex-col items-center gap-sm p-md border border-outline-variant hover:border-primary rounded-xl transition-all text-secondary hover:text-primary">
+<span class="material-symbols-outlined text-headline-md">warning</span>
+<span class="font-label-md">Asalto</span>
+</button>
+<button class="flex flex-col items-center gap-sm p-md border border-outline-variant hover:border-primary rounded-xl transition-all text-secondary hover:text-primary">
+<span class="material-symbols-outlined text-headline-md">minor_crash</span>
+<span class="font-label-md">Vandalismo</span>
+</button>
+<button class="flex flex-col items-center gap-sm p-md border border-outline-variant hover:border-primary rounded-xl transition-all text-secondary hover:text-primary">
+<span class="material-symbols-outlined text-headline-md">visibility</span>
+<span class="font-label-md">Acoso</span>
+</button>
+<button class="flex flex-col items-center gap-sm p-md border border-outline-variant hover:border-primary rounded-xl transition-all text-secondary hover:text-primary">
+<span class="material-symbols-outlined text-headline-md">inventory_2</span>
+<span class="font-label-md">Hurto</span>
+</button>
+<button class="flex flex-col items-center gap-sm p-md border border-outline-variant hover:border-primary rounded-xl transition-all text-secondary hover:text-primary">
+<span class="material-symbols-outlined text-headline-md">more_horiz</span>
+<span class="font-label-md">Otro</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Location (Placeholder) -->
+<div class="space-y-md pt-lg border-t border-outline-variant/30">
+<label class="font-label-md text-on-surface block mb-sm">¿Dónde ocurrió?</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-secondary">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-body-md" placeholder="Busca una dirección o calle..." type="text"/>
+</div>
+<div class="w-full h-64 rounded-xl overflow-hidden relative border border-outline-variant">
+<div class="absolute inset-0 bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="high resolution minimalist map view of a city street grid with blue and grey tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDui-jQ_5GmyIIv9BPmOEr1dUKq7A8Amnk4gJPUSEaMIPQNPDqSdy4bXNS7gJAeT715wUlk4cocaUdqEVX6FTJhmQj2sv8d1uQpXCww1qwRFIvUdwYD3RvJypg4v1bF2EwoMQCu55LMjzs826XukRepndn70BsFLVTnu2kYHsXR0E15jyJ6XVJj2bhltscqRcff0BymrSOEyEAGRUimaGV11xs5as1DDQjqdzz3QzoDCjRdVRUjnzlWCZM1Xit_n6-A3sfS50WY4SI"/>
+<div class="absolute inset-0 bg-black/5"></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-error text-headline-xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<div class="absolute bottom-4 right-4 bg-white p-2 rounded-lg shadow-md flex flex-col gap-2">
+<button class="p-1 hover:bg-slate-100"><span class="material-symbols-outlined text-secondary">add</span></button>
+<button class="p-1 hover:bg-slate-100"><span class="material-symbols-outlined text-secondary">remove</span></button>
+</div>
+</div>
+</div>
+<!-- Step 3: Date & Time -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md pt-lg border-t border-outline-variant/30">
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface">Fecha del suceso</label>
+<input class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg font-body-md" type="date"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface">Hora aproximada</label>
+<input class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg font-body-md" type="time"/>
+</div>
+</div>
+<!-- Step 4: Evidence -->
+<div class="space-y-md pt-lg border-t border-outline-variant/30">
+<label class="font-label-md text-on-surface block">Evidencia (Opcional)</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center space-y-sm hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-headline-xl text-primary-container">cloud_upload</span>
+<div class="font-body-md">
+<span class="font-semibold text-primary">Haz clic para subir</span> o arrastra y suelta
+                        </div>
+<p class="font-label-sm text-secondary">JPG, PNG o MP4 (máx. 25MB)</p>
+</div>
+</div>
+<!-- Step 5: Privacy -->
+<div class="space-y-md pt-lg border-t border-outline-variant/30">
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">shield</span>
+<div>
+<p class="font-label-md text-on-surface">Reportar de forma anónima</p>
+<p class="font-label-sm text-secondary">Tu identidad no será pública en el mapa.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="font-label-sm text-secondary px-sm leading-relaxed">
+                        Al enviar este reporte, aceptas nuestros <a class="text-primary underline" href="#">Términos de Servicio</a> y confirmas que la información proporcionada es verídica para fines de seguridad pública.
+                    </p>
+</div>
+<!-- Final CTA -->
+<div class="pt-lg flex gap-md">
+<button class="flex-1 py-4 border border-outline text-secondary font-label-md rounded-xl hover:bg-surface-container transition-colors">
+                        Cancelar
+                    </button>
+<button class="flex-[2] py-4 bg-primary text-on-primary font-label-md rounded-xl shadow-lg hover:shadow-xl active:scale-95 transition-all">
+                        Enviar reporte
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 mt-auto bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto space-y-4 md:space-y-0">
+<span class="font-['Inter'] text-xs text-slate-500 dark:text-slate-400">© 2024 AguasPorQueAquiAsaltan. A Civic Safety Initiative.</span>
+<div class="flex gap-6">
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Civic Data API</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Civic Panel - AguasPorQueAquiAsaltan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-highest": "#e0e3e5",
+                        "background": "#f7f9fb",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-tertiary-container": "#eef0ff",
+                        "primary-container": "#2563eb",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#4d556b",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface": "#f7f9fb",
+                        "primary": "#004ac6",
+                        "secondary": "#505f76",
+                        "on-primary-container": "#eeefff",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline": "#737686",
+                        "tertiary-container": "#656d84",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-container": "#54647a",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface-container": "#eceef0",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "secondary-fixed": "#d3e4fe",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-surface": "#2d3133",
+                        "surface-tint": "#0053db",
+                        "on-tertiary-fixed": "#131b2e",
+                        "surface-bright": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "outline-variant": "#c3c6d7",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "margin": "32px",
+                        "xl": "48px",
+                        "base": "4px",
+                        "gutter": "20px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 fixed left-0 top-0 flex flex-col p-4 space-y-2 z-50">
+<div class="px-2 py-4 mb-6">
+<h1 class="text-lg font-black text-blue-700 font-headline-md">Civic Panel</h1>
+<p class="text-slate-500 dark:text-slate-400 font-label-sm">Safety Moderator</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+                Map View
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg hover:translate-x-1 transition-transform duration-200 font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="gavel" style="font-variation-settings: 'FILL' 1;">gavel</span>
+                Moderation
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                Analytics
+            </a>
+</nav>
+<div class="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-1">
+<button class="w-full bg-primary-container text-on-primary-container py-2 rounded-lg font-label-md flex items-center justify-center gap-2 mb-4 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                New Report
+            </button>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Help
+            </a>
+</div>
+<div class="mt-6 flex items-center gap-3 px-2">
+<div class="h-10 w-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img alt="Admin User Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnPKmMq3UDQqxqNhAhmyKo2u5EZSGbiMEI0cmAbPIRtZTWSYbfx90Ms_052opJRWlsv0fQm5wqfR-lNUvPGzqhJZlkejjY7xC4FRSVMUAcO_Vymp2g8NXBek3q4QeGqC3199F7LCLqqS8ssYAmXcOD3FtjBWd6GMAX1F2pansgSiAtFNix4M3Juakoznktm2MEXVKUvsR0mrHphXjQ42UTi2cFyf3xrAhmcY9RLoX_Gh9qQoFyi7a0UUZ56rolpu3iR3YaYo050CA"/>
+</div>
+<div class="flex flex-col">
+<span class="text-on-background font-label-md">Alex Rivera</span>
+<span class="text-xs text-slate-500">Super Admin</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-grow flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40 w-full">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight text-blue-700 dark:text-blue-500 font-headline-md">AguasPorQueAquiAsaltan</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors font-label-md" href="#">Map</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors font-label-md" href="#">Report</a>
+<a class="text-blue-600 dark:text-blue-400 font-semibold border-b-2 border-blue-600 pb-1 font-label-md" href="#">Admin</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined text-slate-500 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md cursor-pointer transition-all" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 h-2 w-2 bg-error rounded-full border-2 border-white"></span>
+</div>
+<span class="material-symbols-outlined text-slate-500 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md cursor-pointer transition-all" data-icon="account_circle">account_circle</span>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md active:scale-95 duration-150 transition-all">
+                        Report Incident
+                    </button>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-lg flex gap-lg h-[calc(100vh-64px)] overflow-hidden">
+<!-- Left Side: Queue & Table -->
+<div class="flex-grow flex flex-col space-y-md min-w-0">
+<!-- Filters Header -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+<h2 class="font-headline-md text-on-background">Moderation Queue</h2>
+<div class="flex items-center gap-sm">
+<select class="bg-surface-container-low border-none rounded-lg text-sm font-label-md px-4 py-2 focus:ring-2 focus:ring-primary">
+<option>Pending</option>
+<option>In Review</option>
+<option>Flagged</option>
+</select>
+<select class="bg-surface-container-low border-none rounded-lg text-sm font-label-md px-4 py-2 focus:ring-2 focus:ring-primary">
+<option>All Types</option>
+<option>Armed Robbery</option>
+<option>Theft</option>
+<option>Assault</option>
+</select>
+<select class="bg-surface-container-low border-none rounded-lg text-sm font-label-md px-4 py-2 focus:ring-2 focus:ring-primary">
+<option>All Cities</option>
+<option>Mexico City</option>
+<option>Guadalajara</option>
+<option>Monterrey</option>
+</select>
+<button class="flex items-center gap-xs px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-lg">
+<span class="material-symbols-outlined text-[20px]" data-icon="filter_list">filter_list</span>
+<span class="font-label-sm">More</span>
+</button>
+</div>
+</div>
+<!-- Main Table -->
+<div class="flex-grow overflow-auto bg-surface-container-lowest rounded-xl shadow-sm border border-slate-200">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-low z-10">
+<tr>
+<th class="px-md py-3 font-label-sm text-slate-500 uppercase tracking-wider">Date/Time</th>
+<th class="px-md py-3 font-label-sm text-slate-500 uppercase tracking-wider">Type</th>
+<th class="px-md py-3 font-label-sm text-slate-500 uppercase tracking-wider">Location</th>
+<th class="px-md py-3 font-label-sm text-slate-500 uppercase tracking-wider">Confidence</th>
+<th class="px-md py-3 font-label-sm text-slate-500 uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="hover:bg-blue-50/50 cursor-pointer transition-colors bg-blue-50/20">
+<td class="px-md py-4">
+<div class="flex flex-col">
+<span class="font-label-md text-on-background">Oct 24, 14:20</span>
+<span class="text-xs text-slate-400">2 mins ago</span>
+</div>
+</td>
+<td class="px-md py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[18px]" data-icon="warning">warning</span>
+<span class="font-label-md">Armed Robbery</span>
+</div>
+</td>
+<td class="px-md py-4 font-body-md text-slate-600">Av. Insurgentes Sur, CDMX</td>
+<td class="px-md py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 85%"></div>
+</div>
+<span class="text-xs font-bold text-primary">85%</span>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-[10px] font-bold uppercase">Pending</span>
+</td>
+</tr>
+<tr class="hover:bg-blue-50/50 cursor-pointer transition-colors">
+<td class="px-md py-4">
+<div class="flex flex-col">
+<span class="font-label-md text-on-background">Oct 24, 13:45</span>
+<span class="text-xs text-slate-400">37 mins ago</span>
+</div>
+</td>
+<td class="px-md py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px]" data-icon="directions_run">directions_run</span>
+<span class="font-label-md">Phone Snatching</span>
+</div>
+</td>
+<td class="px-md py-4 font-body-md text-slate-600">Colonia Roma, CDMX</td>
+<td class="px-md py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 42%"></div>
+</div>
+<span class="text-xs font-bold text-slate-500">42%</span>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-[10px] font-bold uppercase">Pending</span>
+</td>
+</tr>
+<tr class="hover:bg-blue-50/50 cursor-pointer transition-colors">
+<td class="px-md py-4">
+<div class="flex flex-col">
+<span class="font-label-md text-on-background">Oct 24, 12:10</span>
+<span class="text-xs text-slate-400">2 hours ago</span>
+</div>
+</td>
+<td class="px-md py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-500 text-[18px]" data-icon="minor_crash">minor_crash</span>
+<span class="font-label-md">Vandalism</span>
+</div>
+</td>
+<td class="px-md py-4 font-body-md text-slate-600">Polanco, CDMX</td>
+<td class="px-md py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 92%"></div>
+</div>
+<span class="text-xs font-bold text-primary">92%</span>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-[10px] font-bold uppercase">Pending</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Side: Review Panel (Split-view) -->
+<aside class="w-[420px] flex flex-col bg-surface-container-lowest rounded-xl shadow-xl border border-slate-200 overflow-hidden">
+<div class="p-md border-b border-slate-100 flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-md text-on-background">Report Details</h3>
+<span class="text-xs font-bold text-slate-400">ID: #AS-9821</span>
+</div>
+<div class="flex-grow overflow-auto p-md space-y-lg">
+<!-- Description -->
+<section class="space-y-sm">
+<label class="font-label-sm text-slate-500 uppercase">Description</label>
+<p class="font-body-md text-on-surface leading-relaxed">
+                            Two individuals on a black motorcycle approached victims at the intersection. One brandished a handgun. Stole two mobile devices and a wallet. Fled towards Viaducto.
+                        </p>
+</section>
+<!-- Evidence Preview -->
+<section class="space-y-sm">
+<label class="font-label-sm text-slate-500 uppercase">Evidence (1 file)</label>
+<div class="relative rounded-lg overflow-hidden h-40 bg-slate-100 group cursor-zoom-in">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="grainy CCTV footage screenshot showing a motorcycle with two figures in a dark urban street environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDehPhR8wP25core54gVimf5cRKoDwXq5FAqz7Ckx8cENMlrds1zpETpiVlwwpAYQECMVY0BrXxkgXXA12uU0i3mcs4W4BH6B3VoNS5DhTIFBCSy8FoHHpmiZQvTdC28k9Xc7kcoMGwthmznbS93eMoL-aEAn5M1BVf__IJnmI481MW0URYmg9QB8WuJX-puDPs0AIygCTz6vXW-8bLYK3LpPzQYzgQqaQy2j2cxkW0uk7lOHQpp-bBSTuKX-ZaxQAr-KXjrASxBMM"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+</section>
+<!-- Location Preview -->
+<section class="space-y-sm">
+<label class="font-label-sm text-slate-500 uppercase">Geographic Context</label>
+<div class="rounded-lg overflow-hidden h-32 bg-slate-100 border border-slate-200">
+<img class="w-full h-full object-cover" data-alt="static map view of an urban intersection in Mexico City with a red pin marker" data-location="Mexico City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8EfWuYDPpx9OLFhAAOZcs0xCI3gs5_xFNryTSwiYc1DokuaFonfC_pWlxi14XT0CGJhu1o60SOiMN9JTibsKcAPfMSDTyMPizMbO7QKRlefHRE8DS-NsKzdc_oj19BL8T2LQ8Cae_haYvsphibRRA7DwTz0Z3UgpDvqfVSMWVLEePR0IxfTZIGa0uXdgO-tSvj3CDLdjWCoBCdJecNoakT29kVxS1gTmrHBpZecjK7JvqrZ-qzJ10Hdo6wVdHIGRJkXfG9vi4zpg"/>
+</div>
+</section>
+<!-- Internal Notes -->
+<section class="space-y-sm">
+<label class="font-label-sm text-slate-500 uppercase">Internal Moderator Notes</label>
+<textarea class="w-full h-24 border-slate-200 rounded-lg text-sm font-body-md focus:ring-primary focus:border-primary" placeholder="Add observations or cross-reference numbers..."></textarea>
+</section>
+</div>
+<!-- Moderator Actions -->
+<div class="p-md bg-surface-container-low border-t border-slate-200 space-y-md">
+<div class="grid grid-cols-2 gap-sm">
+<button class="bg-primary text-white py-2 rounded-lg font-label-md flex items-center justify-center gap-2 hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            Validate
+                        </button>
+<button class="bg-white border border-primary text-primary py-2 rounded-lg font-label-md flex items-center justify-center gap-2 hover:bg-blue-50 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+                            Unverified
+                        </button>
+</div>
+<div class="grid grid-cols-3 gap-sm">
+<button class="bg-white border border-slate-200 text-slate-600 py-2 rounded-lg font-label-sm flex flex-col items-center justify-center gap-1 hover:bg-slate-50 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>
+                            Duplicate
+                        </button>
+<button class="bg-white border border-error text-error py-2 rounded-lg font-label-sm flex flex-col items-center justify-center gap-1 hover:bg-red-50 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="block">block</span>
+                            Reject
+                        </button>
+<button class="bg-white border border-slate-200 text-slate-600 py-2 rounded-lg font-label-sm flex flex-col items-center justify-center gap-1 hover:bg-slate-50 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility_off">visibility_off</span>
+                            Hide
+                        </button>
+</div>
+</div>
+</aside>
+</div>
+<!-- Footer -->
+<footer class="w-full py-8 mt-auto bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto space-y-4 md:space-y-0">
+<span class="font-['Inter'] text-xs text-slate-500 dark:text-slate-400">© 2024 AguasPorQueAquiAsaltan. A Civic Safety Initiative.</span>
+<div class="flex gap-6">
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Civic Data API</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

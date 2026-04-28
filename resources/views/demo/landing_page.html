@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AguasPorQueAquiAsaltan | Seguridad Ciudadana</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-highest": "#e0e3e5",
+                        "background": "#f7f9fb",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-tertiary-container": "#eef0ff",
+                        "primary-container": "#2563eb",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#4d556b",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface": "#f7f9fb",
+                        "primary": "#004ac6",
+                        "secondary": "#505f76",
+                        "on-primary-container": "#eeefff",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline": "#737686",
+                        "tertiary-container": "#656d84",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-container": "#54647a",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface-container": "#eceef0",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "secondary-fixed": "#d3e4fe",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-surface": "#2d3133",
+                        "surface-tint": "#0053db",
+                        "on-tertiary-fixed": "#131b2e",
+                        "surface-bright": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "outline-variant": "#c3c6d7",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "margin": "32px",
+                        "xl": "48px",
+                        "base": "4px",
+                        "gutter": "20px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .ambient-shadow { shadow-sm: 0px 4px 12px rgba(15, 23, 42, 0.05); }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="bg-slate-50/80 backdrop-blur-md border-b border-slate-200 docked full-width top-0 z-50 sticky shadow-sm">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-7xl mx-auto font-['Inter'] antialiased">
+<div class="text-xl font-bold tracking-tight text-blue-700">AguasPorQueAquiAsaltan</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-slate-600 hover:text-blue-500 transition-colors" href="#">Map</a>
+<a class="text-slate-600 hover:text-blue-500 transition-colors" href="#">Report</a>
+<a class="text-slate-600 hover:text-blue-500 transition-colors" href="#">Admin</a>
+</nav>
+<div class="flex items-center space-x-4">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-all active:scale-95 duration-150">Report Incident</button>
+<div class="flex space-x-2 text-slate-600">
+<span class="material-symbols-outlined p-2 hover:bg-slate-100 rounded-md transition-all cursor-pointer">notifications</span>
+<span class="material-symbols-outlined p-2 hover:bg-slate-100 rounded-md transition-all cursor-pointer">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32 px-6">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+<div class="w-full md:w-1/2 space-y-6">
+<h1 class="font-headline-xl text-headline-xl text-on-background">
+                        Reportes ciudadanos de seguridad en tu zona
+                    </h1>
+<p class="font-body-lg text-body-lg text-tertiary-container max-w-xl">
+                        Consulta y reporta incidentes de forma responsable, anónima y basada en evidencia. Juntos construimos una ciudad más segura.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-headline-md text-body-md hover:shadow-lg transition-all active:scale-95">Ver mapa</button>
+<button class="border-2 border-outline-variant text-primary px-8 py-4 rounded-xl font-headline-md text-body-md hover:bg-surface-container-low transition-all active:scale-95">Reportar incidente</button>
+</div>
+<p class="font-label-sm text-label-sm text-outline flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                        Los reportes son ciudadanos y pueden estar pendientes de validación.
+                    </p>
+</div>
+<div class="w-full md:w-1/2 relative">
+<div class="aspect-square rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="Stylized birds eye view of a clean modern city map with blue data points and clean vector lines" data-location="Mexico City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOYQHt8W2aL00Q9-EpqVrujpSYJzpUxaQ3xCMDrnTI6Kw3XV2KxwIPilU56C8Bxtkg2u20ZmKOqsL8Yq7iJOmLbsJv-7uDgwIPUb2NolNtDpOTOBMVNKPJYGa66s7YFsh5kCnkyf0kZaPNDw6yMn2cclGt91QoyfTrWzPHOPgQggU8aJ_ppxm2jufvbMa1vxUSGJEnzsewfA8g7wYwFy6Qua4J95SMtl4bniphw0L2MWXuLuTafYLX7ObPDgEuIlbGnSTnVnjlZrA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none"></div>
+</div>
+<div class="absolute -bottom-6 -left-6 bg-surface-container-lowest p-6 rounded-2xl shadow-xl border border-outline-variant flex items-center gap-4 max-w-xs animate-pulse">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Reporte Reciente</p>
+<p class="font-label-sm text-label-sm text-outline">Hace 5 minutos en Zona Centro</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Bento Grid -->
+<section class="py-24 px-6 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="mb-12">
+<h2 class="font-headline-lg text-headline-lg mb-2">Herramientas de Participación</h2>
+<p class="font-body-md text-body-md text-tertiary-container">Tecnología civic-tech diseñada para la prevención y respuesta comunitaria.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[240px]">
+<!-- Large Card: Mapa -->
+<div class="md:col-span-8 md:row-span-2 bg-surface-container-lowest rounded-3xl p-8 shadow-[0px_4px_12px_rgba(15,23,42,0.05)] border border-outline-variant/30 flex flex-col justify-between group overflow-hidden">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl mb-4 p-3 bg-primary/10 rounded-xl">map</span>
+<h3 class="font-headline-md text-headline-md mb-2">Mapa de reportes</h3>
+<p class="font-body-md text-body-md text-outline max-w-md">Visualización interactiva en tiempo real con filtros por tipo de incidente, horario y niveles de riesgo detectados.</p>
+</div>
+<div class="mt-8 flex items-center text-primary font-semibold cursor-pointer group-hover:translate-x-2 transition-transform">
+                            Explorar mapa completo <span class="material-symbols-outlined ml-2">arrow_forward</span>
+</div>
+<div class="absolute right-0 bottom-0 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[240px]">explore</span>
+</div>
+</div>
+<!-- Medium Card: Evidence -->
+<div class="md:col-span-4 md:row-span-1 bg-surface-container-lowest rounded-3xl p-6 shadow-[0px_4px_12px_rgba(15,23,42,0.05)] border border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary text-3xl mb-4">verified_user</span>
+<h3 class="font-label-md text-body-lg font-bold mb-2">Evidencia y validación</h3>
+<p class="font-body-md text-label-md text-outline">Sistema de verificación ciudadana basado en fotos, videos y testimonios cruzados.</p>
+</div>
+<!-- Small Card: Anonymous -->
+<div class="md:col-span-4 md:row-span-1 bg-surface-container-lowest rounded-3xl p-6 shadow-[0px_4px_12px_rgba(15,23,42,0.05)] border border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary text-3xl mb-4">masks</span>
+<h3 class="font-label-md text-body-lg font-bold mb-2">Reportes anónimos</h3>
+<p class="font-body-md text-label-md text-outline">Privacidad total. Tu identidad nunca es revelada, solo la información del incidente.</p>
+</div>
+<!-- Full Width Bottom: Alerts -->
+<div class="md:col-span-12 md:row-span-1 bg-primary text-on-primary rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex items-center gap-6">
+<div class="bg-white/20 p-4 rounded-2xl">
+<span class="material-symbols-outlined text-4xl">notifications_active</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md">Alertas por zona</h3>
+<p class="opacity-80 font-body-md">Recibe notificaciones inmediatas si se reporta actividad inusual en tus rutas frecuentes.</p>
+</div>
+</div>
+<button class="bg-surface-container-lowest text-primary px-8 py-3 rounded-xl font-bold whitespace-nowrap hover:scale-105 transition-all">Activar Alertas</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Report Status Section -->
+<section class="py-24 px-6 max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg">Estado de los Reportes</h2>
+<p class="font-body-md text-body-md text-outline mt-2">Transparencia en cada etapa del proceso de verificación ciudadana.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+<!-- Pendiente -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border-l-4 border-amber-400 shadow-sm flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-amber-500 mb-4 text-3xl">pending</span>
+<h4 class="font-bold text-on-background mb-1">Pendiente</h4>
+<p class="text-xs text-outline">Recién ingresado al sistema, esperando revisión inicial.</p>
+</div>
+<!-- No verificado -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border-l-4 border-slate-300 shadow-sm flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-slate-400 mb-4 text-3xl">help</span>
+<h4 class="font-bold text-on-background mb-1">No verificado</h4>
+<p class="text-xs text-outline">Información sin corroborar por otros usuarios o evidencia.</p>
+</div>
+<!-- Validado Comunidad -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border-l-4 border-blue-400 shadow-sm flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-blue-500 mb-4 text-3xl">groups</span>
+<h4 class="font-bold text-on-background mb-1">Validado por comunidad</h4>
+<p class="text-xs text-outline">Múltiples usuarios han confirmado la veracidad del reporte.</p>
+</div>
+<!-- Validado con evidencia -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border-l-4 border-green-500 shadow-sm flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-green-600 mb-4 text-3xl">attachment</span>
+<h4 class="font-bold text-on-background mb-1">Validado con evidencia</h4>
+<p class="text-xs text-outline">Incluye fotos o videos que demuestran el incidente.</p>
+</div>
+<!-- Confirmado -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border-l-4 border-green-700 shadow-sm flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-green-700 mb-4 text-3xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<h4 class="font-bold text-on-background mb-1">Confirmado</h4>
+<p class="text-xs text-outline">Reporte de alta confiabilidad con validación total.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto bg-slate-50 border-t border-slate-200">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto space-y-6 md:space-y-0">
+<div class="font-['Inter'] text-xs text-slate-500 text-center md:text-left">
+<p class="mb-1 font-bold text-blue-600">AguasPorQueAquiAsaltan</p>
+                © 2024 AguasPorQueAquiAsaltan. A Civic Safety Initiative.
+            </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Civic Data API</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-blue-500 transition-colors" href="#">Contact Support</a>
+</div>
+<div class="flex space-x-4">
+<span class="material-symbols-outlined text-slate-400 hover:text-blue-500 cursor-pointer">share</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-blue-500 cursor-pointer">public</span>
+</div>
+</div>
+</footer>
+</body></html>

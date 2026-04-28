@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AguasPorQueAquiAsaltan - Public Safety Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#00174b",
+                    "surface-container-highest": "#e0e3e5",
+                    "background": "#f7f9fb",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#dae2fd",
+                    "on-tertiary-container": "#eef0ff",
+                    "primary-container": "#2563eb",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#4d556b",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "surface": "#f7f9fb",
+                    "primary": "#004ac6",
+                    "secondary": "#505f76",
+                    "on-primary-container": "#eeefff",
+                    "on-background": "#191c1e",
+                    "inverse-primary": "#b4c5ff",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#bec6e0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "outline": "#737686",
+                    "tertiary-container": "#656d84",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#3f465c",
+                    "surface-variant": "#e0e3e5",
+                    "on-surface-variant": "#434655",
+                    "on-secondary-container": "#54647a",
+                    "secondary-container": "#d0e1fb",
+                    "on-secondary-fixed": "#0b1c30",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "surface-container": "#eceef0",
+                    "surface-dim": "#d8dadc",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "secondary-fixed": "#d3e4fe",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary-fixed": "#dbe1ff",
+                    "inverse-surface": "#2d3133",
+                    "surface-tint": "#0053db",
+                    "on-tertiary-fixed": "#131b2e",
+                    "surface-bright": "#f7f9fb",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "outline-variant": "#c3c6d7",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "margin": "32px",
+                    "xl": "48px",
+                    "base": "4px",
+                    "gutter": "20px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+      }
+      .map-container {
+        background-color: #e2e8f0;
+        background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+<!-- TopAppBar from JSON -->
+<header class="bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md text-slate-600 dark:text-slate-400 font-['Inter'] antialiased docked full-width top-0 z-50 sticky border-b border-slate-200 dark:border-slate-800 shadow-sm h-16 shrink-0">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-7xl mx-auto h-full">
+<div class="text-xl font-bold tracking-tight text-blue-700 dark:text-blue-500">AguasPorQueAquiAsaltan</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-blue-600 dark:text-blue-400 font-semibold border-b-2 border-blue-600 pb-1 text-label-md" href="#">Map</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors text-label-md" href="#">Report</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors text-label-md" href="#">Admin</a>
+</nav>
+<div class="flex items-center space-x-4">
+<div class="hidden sm:flex items-center bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-outline text-[20px] mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-48" placeholder="Search safety zones..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-outline p-2 hover:bg-slate-100 rounded-md transition-all active:scale-95 duration-150" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-outline p-2 hover:bg-slate-100 rounded-md transition-all active:scale-95 duration-150" data-icon="account_circle">account_circle</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md hover:bg-primary-container transition-all active:scale-95 shadow-sm">Report Incident</button>
+</div>
+</div>
+</header>
+<main class="flex-grow flex overflow-hidden relative">
+<!-- Left Sidebar (Filters) -->
+<aside class="w-80 bg-surface-container-lowest border-r border-outline-variant flex flex-col z-20 shadow-xl overflow-y-auto custom-scrollbar">
+<div class="p-6 space-y-8">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface mb-2">Safety Filters</h2>
+<p class="text-label-sm text-outline">Adjust parameters to view specific risks.</p>
+</div>
+<!-- Incident Type -->
+<div class="space-y-4">
+<label class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Incident type</label>
+<div class="grid grid-cols-1 gap-2">
+<label class="flex items-center p-3 rounded-xl border border-outline-variant hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input checked="" class="rounded text-primary focus:ring-primary h-5 w-5 mr-3" type="checkbox"/>
+<span class="text-body-md">Robbery</span>
+<span class="material-symbols-outlined ml-auto text-error opacity-70 group-hover:opacity-100" data-icon="security">security</span>
+</label>
+<label class="flex items-center p-3 rounded-xl border border-outline-variant hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="rounded text-primary focus:ring-primary h-5 w-5 mr-3" type="checkbox"/>
+<span class="text-body-md">Vehicle theft</span>
+<span class="material-symbols-outlined ml-auto text-on-surface-variant opacity-70 group-hover:opacity-100" data-icon="directions_car">directions_car</span>
+</label>
+<label class="flex items-center p-3 rounded-xl border border-outline-variant hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input checked="" class="rounded text-primary focus:ring-primary h-5 w-5 mr-3" type="checkbox"/>
+<span class="text-body-md">Assault</span>
+<span class="material-symbols-outlined ml-auto text-error opacity-70 group-hover:opacity-100" data-icon="warning">warning</span>
+</label>
+<label class="flex items-center p-3 rounded-xl border border-outline-variant hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="rounded text-primary focus:ring-primary h-5 w-5 mr-3" type="checkbox"/>
+<span class="text-body-md">Unsafe area</span>
+<span class="material-symbols-outlined ml-auto text-on-surface-variant opacity-70 group-hover:opacity-100" data-icon="visibility_off">visibility_off</span>
+</label>
+</div>
+</div>
+<!-- Date Range -->
+<div class="space-y-4">
+<label class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Date range</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-full bg-primary-container text-on-primary-container text-label-sm font-semibold">Last 24h</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm hover:bg-surface-container-highest transition-colors">7 days</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm hover:bg-surface-container-highest transition-colors">30 days</button>
+</div>
+</div>
+<!-- Neighborhood -->
+<div class="space-y-4">
+<label class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Neighborhood</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="location_on">location_on</span>
+<select class="w-full pl-10 pr-4 py-3 rounded-xl border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary text-body-md appearance-none">
+<option>All Neighborhoods</option>
+<option>Centro Histórico</option>
+<option>Polanco</option>
+<option>Condesa</option>
+<option>Roma Norte</option>
+</select>
+</div>
+</div>
+<!-- Validation Level -->
+<div class="space-y-4">
+<label class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Validation level</label>
+<div class="space-y-2">
+<div class="flex items-center justify-between text-label-sm text-outline mb-1">
+<span>Minimum Confidence</span>
+<span>70%</span>
+</div>
+<input class="w-full h-2 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+<div class="flex justify-between mt-2">
+<span class="text-label-sm px-2 py-1 bg-surface-container-low rounded border border-outline-variant">Pending</span>
+<span class="text-label-sm px-2 py-1 bg-surface-container-low rounded border border-outline-variant">Verified</span>
+<span class="text-label-sm px-2 py-1 bg-primary-container text-on-primary-container rounded font-bold">High Confidence</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-6 border-t border-outline-variant bg-surface-container-low">
+<button class="w-full flex items-center justify-center space-x-2 text-primary font-label-md hover:underline">
+<span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+<span>Reset all filters</span>
+</button>
+</div>
+</aside>
+<!-- Main Map Area -->
+<div class="flex-grow relative map-container overflow-hidden">
+<!-- Simulated Map Canvas -->
+<img class="absolute inset-0 w-full h-full object-cover grayscale-[0.2] contrast-[0.9] brightness-[1.05]" data-alt="Modern light-themed minimalist city map with clean streets and subtle civic details in soft gray and blue tones" data-location="Mexico City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc1w3ZYwtaihAB46MqD1TNjz50LH_DNwedRZwk6njdrlVnK_EjVuzJXN56KEDGPopiFjNzcFZG9U9MB0QJlbVTSU_q8P-amrJe6NjGq88cT1PrQkgWBjPsFsNJ3eereda7sypGUKpKSkb-FPra5rNtbvFuMQylyck_34Kl8AMrLcxl9EziNE6f3TT48oEqEZA7BXJeRuKxund4XvvRoxCbQQsVKBbuvOc01GFMlPQ-BGedqdEnNzjDU42BrQhj2RaEEaxmecXvBxY"/>
+<!-- Marker Overlay -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Red (Recent/High-risk) -->
+<div class="absolute top-[35%] left-[45%] pointer-events-auto cursor-pointer">
+<div class="relative group">
+<div class="absolute -top-2 -left-2 w-8 h-8 bg-error/20 rounded-full animate-ping"></div>
+<span class="material-symbols-outlined text-error text-[40px] drop-shadow-lg" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white px-3 py-1.5 rounded-lg shadow-xl border border-outline-variant opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+<p class="text-label-sm font-bold text-error">Armed Robbery</p>
+<p class="text-xs text-outline">15 mins ago</p>
+</div>
+</div>
+</div>
+<!-- Amber (Pending) -->
+<div class="absolute top-[55%] left-[30%] pointer-events-auto cursor-pointer">
+<span class="material-symbols-outlined text-amber-500 text-[32px] drop-shadow-md" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<!-- Green (Validated) -->
+<div class="absolute top-[65%] left-[60%] pointer-events-auto cursor-pointer">
+<span class="material-symbols-outlined text-emerald-500 text-[32px] drop-shadow-md" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<!-- Gray (Rejected) -->
+<div class="absolute top-[20%] left-[75%] pointer-events-auto cursor-pointer opacity-40">
+<span class="material-symbols-outlined text-outline text-[28px]" data-icon="location_on">location_on</span>
+</div>
+</div>
+<!-- Floating Controls -->
+<div class="absolute bottom-8 left-8 flex flex-col space-y-2 pointer-events-auto">
+<button class="p-3 bg-white rounded-xl shadow-lg hover:bg-slate-50 text-on-surface transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<button class="p-3 bg-white rounded-xl shadow-lg hover:bg-slate-50 text-on-surface transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+<button class="p-3 bg-white rounded-xl shadow-lg hover:bg-slate-50 text-primary transition-transform active:scale-90 mt-4">
+<span class="material-symbols-outlined" data-icon="my_location">my_location</span>
+</button>
+</div>
+</div>
+<!-- Right Side Detail Drawer -->
+<aside class="w-[400px] bg-surface-container-lowest border-l border-outline-variant flex flex-col z-20 shadow-[-10px_0_20px_rgba(0,0,0,0.05)] translate-x-0 transition-transform duration-300">
+<div class="p-6 overflow-y-auto flex-grow custom-scrollbar">
+<!-- Header -->
+<div class="flex justify-between items-start mb-6">
+<div>
+<span class="px-2 py-1 rounded bg-error-container text-on-error-container text-label-sm font-bold uppercase tracking-widest">Armed Robbery</span>
+<h3 class="text-headline-md font-headline-md text-on-surface mt-3">Av. Paseo de la Reforma</h3>
+<p class="text-body-md text-outline">Near Angel of Independence</p>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-outline" data-icon="close">close</span>
+</button>
+</div>
+<!-- Image / Evidence -->
+<div class="rounded-2xl overflow-hidden mb-6 aspect-video bg-surface-container-high border border-outline-variant relative">
+<img class="w-full h-full object-cover" data-alt="Wide shot of a modern city street corner with sleek urban architecture and soft evening light, high-end civic photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDanU-WwwD05A2vIUUgBNfyeprSnRZzY9ZU9Hfmbjcc3vdnEqJKucy59Qxt-R5fOm6ZZEGJDrXMrQTyUKUdj_hWlG25Qf6-WtXKmRqNCKyxfrBjlM3Z2kP2bbfYhsiCkxG-wIkH7BMXt8gDeanjZxpCnRe33Z7AMRBDww-r-2H7Lt-Zqv2WfGrAY3Gc6KzU4ln_yPoiwNN_dNkJIf5otfUDHbzY35FId6PgCaswuts9axnWcEhgPjKrEDPT_bnv3bP3BJaAa5ck13s"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-bold flex items-center shadow-sm">
+<span class="material-symbols-outlined text-emerald-500 text-sm mr-1" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                        Verified Report
+                    </div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant">
+<p class="text-label-sm text-outline mb-1 uppercase font-bold">Confidence</p>
+<p class="text-headline-md font-headline-md text-primary">85%</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant">
+<p class="text-label-sm text-outline mb-1 uppercase font-bold">Time</p>
+<p class="text-headline-md font-headline-md text-on-surface">11:42 PM</p>
+</div>
+</div>
+<!-- Description -->
+<div class="space-y-4">
+<h4 class="text-label-md font-bold text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined mr-2 text-[20px]" data-icon="notes">notes</span>
+                        Incident Details
+                    </h4>
+<p class="text-body-md text-on-surface leading-relaxed italic border-l-4 border-error-container pl-4">
+                        "Two individuals on a motorcycle approached several pedestrians waiting for the bus. They were carrying what appeared to be a handgun. They took phones and wallets before heading North."
+                    </p>
+</div>
+<!-- Civic Actions -->
+<div class="mt-10 space-y-3">
+<button class="w-full flex items-center justify-center space-x-2 bg-primary text-on-primary py-4 rounded-2xl font-label-md hover:bg-primary-container transition-all active:scale-95 shadow-md">
+<span class="material-symbols-outlined" data-icon="record_voice_over">record_voice_over</span>
+<span>Yo también lo vi</span>
+</button>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center space-x-2 bg-surface-container-high text-on-surface-variant py-3 rounded-2xl font-label-md hover:bg-surface-container-highest transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="report_off">report_off</span>
+<span>Marcar falso</span>
+</button>
+<button class="flex items-center justify-center space-x-2 bg-surface-container-high text-on-surface-variant py-3 rounded-2xl font-label-md hover:bg-surface-container-highest transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+<span>Ver detalles</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer for Social Proof -->
+<div class="p-6 border-t border-outline-variant bg-surface-container-low flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-300 flex items-center justify-center text-[10px] font-bold">JD</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-blue-300 flex items-center justify-center text-[10px] font-bold">MA</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-400 flex items-center justify-center text-[10px] font-bold">TP</div>
+</div>
+<p class="text-label-sm text-outline">12 others confirmed this</p>
+</div>
+</aside>
+</main>
+<!-- Footer from JSON (Auto-suppressed but skeleton included if needed for global context) -->
+<footer class="bg-slate-50 dark:bg-slate-950 text-blue-600 dark:text-blue-400 font-['Inter'] text-xs text-slate-500 dark:text-slate-400 w-full py-4 shrink-0 border-t border-slate-200 dark:border-slate-800 shadow-none z-30">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto space-y-2 md:space-y-0">
+<p>© 2024 AguasPorQueAquiAsaltan. A Civic Safety Initiative.</p>
+<div class="flex space-x-6">
+<a class="hover:text-blue-500 transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-blue-500 transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-blue-500 transition-colors" href="#">Civic Data API</a>
+<a class="hover:text-blue-500 transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>
