@@ -15,6 +15,14 @@ Nota de implementación actual:
   - formulario `/report_incident_form`
 - El layout público ya está separado y reutilizable.
 - El tema por defecto debe permanecer en `light`.
+- Ya existe backend base del dominio de reportes:
+  - migraciones
+  - modelos
+  - factories
+  - seeders
+  - cálculo inicial de `confidence_score`
+  - creación pública de reportes
+  - mapa público conectado a datos reales
 
 ## Nombre del producto
 Usar temporalmente: AlertaZona
@@ -35,8 +43,8 @@ Toda la interfaz debe estar en español.
 
 Estado actual del frontend:
 - `welcome.tsx` implementa la landing pública.
-- `view_map.tsx` implementa el mapa placeholder y panel de detalle.
-- `report_incident_form.tsx` implementa el formulario público de reporte.
+- `view_map.tsx` consume datos reales vía props Inertia y aplica filtros reales.
+- `report_incident_form.tsx` ya envía reportes reales con Inertia.
 - `PublicHeader`, `PublicFooter` y `PublicLayout` ya existen y deben reutilizarse.
 - Componentes públicos ya creados:
   - `StatusBadge`
@@ -155,13 +163,19 @@ Estado actual:
 - Ya existe layout general con:
   - sidebar de filtros
   - canvas placeholder de mapa
-  - markers visuales
+  - markers derivados de incidentes reales
   - panel derecho de detalle
-- Aún es mayormente estático y visual.
+- Ya no es estático:
+  - consume reportes públicos reales vía controlador
+  - aplica filtros por tipo, fecha, colonia, estado y confianza mínima
+  - sustituye textos demo por data de incidentes
+- Mantener por ahora:
+  - mapa visual placeholder
+  - layout de tres columnas en desktop
 - Próximo paso funcional esperado:
-  - conectar datos reales vía props/controladores
-  - transformar filtros en estado real
-  - sustituir textos demo por data de incidentes
+  - `POST /reports/{incident}/votes`
+  - detalle público `GET /reports/{incident}`
+  - mejor experiencia móvil del mapa
 
 ### 3. Formulario de reporte
 Basarse en la vista de Stitch del formulario, pero simplificar.
@@ -203,13 +217,17 @@ Tipos iniciales:
 Estado actual:
 - Implementado en `/report_incident_form`.
 - Ya existe como pantalla única con secciones.
-- Aún no está conectado a persistencia real.
+- Ya está conectado a persistencia real mediante `POST /reports`.
+- Ya soporta:
+  - validación backend
+  - errores visibles en UI
+  - anonimato activado por defecto
+  - subida opcional de evidencia a Laravel Storage
 - Mantener esta dirección de implementación:
   - sin wizard funcional en esta etapa
   - UX sobria
   - ubicación por placeholder
   - evidencia opcional
-  - anonimato activado por defecto
 
 ### 4. Admin / Moderación
 Basarse en la vista de Stitch de admin.
@@ -359,8 +377,9 @@ Admin:
 
 Rutas implementadas actualmente:
 - `GET /` -> `welcome`
-- `GET /view_map` -> `view_map`
+- `GET /view_map` -> `PublicIncidentMapController`
 - `GET /report_incident_form` -> `report_incident_form`
+- `POST /reports` -> `IncidentReportController@store`
 - `GET /dashboard` -> `dashboard` autenticado
 
 ## Componentes React/Inertia sugeridos
@@ -425,6 +444,10 @@ Ejemplos:
 - "Intento de robo reportado cerca de parada de transporte"
 - "Cristalazo reportado en estacionamiento público"
 
+Estado actual:
+- `IncidentSeeder` ya genera reportes demo sobrios y distintos estados públicos.
+- `DatabaseSeeder` ya incluye carga inicial del dominio de incidentes.
+
 ## Primera entrega esperada
 
 Implementar:
@@ -444,13 +467,25 @@ Implementar:
 - cálculo inicial de confidence_score
 - subida básica de evidencia usando Laravel Storage
 
-Ya implementado visualmente:
+Ya implementado:
 - landing pública funcional
 - navegación pública entre landing, mapa y formulario
 - layout público base
 - badges reutilizables para estado y confianza
 - tema claro como default
 - adaptación inicial de las vistas Stitch a TSX/Inertia
+- migraciones del dominio `incidents`
+- modelos `Incident`, `IncidentEvidence`, `IncidentVote`, `IncidentStatusLog`
+- factories y seeders del dominio
+- cálculo inicial de `confidence_score`
+- `POST /reports` con validación y storage privado
+- formulario público conectado a persistencia real
+- mapa público conectado a datos reales y filtros funcionales
+
+Pendiente principal de esta entrega:
+- interacciones públicas de votos
+- detalle público de reporte
+- admin / moderación
 
 No implementar todavía:
 - Google Maps real
