@@ -1,12 +1,18 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import {
+    ArrowRight,
+    AlertTriangle,
     BellRing,
     CircleAlert,
+    Compass,
     EyeOff,
     Map,
     ShieldCheck,
     Siren,
     Users,
+    CheckCircle2,
+    CircleHelp,
+    Paperclip,
 } from 'lucide-react';
 
 const featureCards = [
@@ -39,14 +45,14 @@ const reportStatuses = [
         description: 'Reporte recién enviado, en espera de revisión inicial.',
         accent: 'border-[#f3b44d]',
         icon: CircleAlert,
-        iconClassName: 'text-[#d08b17]',
+        iconClassName: 'text-[#f59e0b]',
     },
     {
         title: 'No verificado',
         description: 'Visible públicamente, sin validación adicional.',
-        accent: 'border-[#a8b0bc]',
-        icon: EyeOff,
-        iconClassName: 'text-[#6d7482]',
+        accent: 'border-slate-300',
+        icon: CircleHelp,
+        iconClassName: 'text-slate-400',
     },
     {
         title: 'Validado por comunidad',
@@ -59,14 +65,14 @@ const reportStatuses = [
         title: 'Validado con evidencia',
         description: 'Cuenta con evidencia aprobada para respaldo del reporte.',
         accent: 'border-[#38a169]',
-        icon: ShieldCheck,
-        iconClassName: 'text-[#1f8a52]',
+        icon: Paperclip,
+        iconClassName: 'text-[#16a34a]',
     },
     {
         title: 'Confirmado',
         description: 'Existe validación externa o revisión sólida por moderación.',
         accent: 'border-[#18643c]',
-        icon: Siren,
+        icon: CheckCircle2,
         iconClassName: 'text-[#18643c]',
     },
 ];
@@ -76,68 +82,65 @@ export default function Welcome() {
         <>
             <Head title="Inicio" />
 
-            <section className="relative overflow-hidden px-6 pb-24 pt-18 md:pb-32 md:pt-24">
-                <div className="absolute inset-x-0 top-0 -z-10 h-[28rem] bg-[radial-gradient(circle_at_top_right,_rgba(37,99,235,0.18),_transparent_45%),radial-gradient(circle_at_left,_rgba(180,197,255,0.55),_transparent_35%)]" />
+            <section className="relative overflow-hidden px-6 pb-24 pt-16 md:pb-32 md:pt-24">
                 <div className="mx-auto grid w-full max-w-7xl items-center gap-12 md:grid-cols-2">
                     <div className="space-y-6">
-                        <span className="inline-flex rounded-full border border-[#c3c6d7] bg-white px-4 py-2 text-sm font-semibold text-[#004ac6] shadow-[0px_4px_12px_rgba(15,23,42,0.05)]">
-                            Plataforma civic tech de reportes ciudadanos
-                        </span>
-
                         <div className="space-y-4">
-                            <h1 className="max-w-xl text-4xl font-bold tracking-[-0.02em] text-[#191c1e] md:text-5xl md:leading-[1.1]">
+                            <h1 className="max-w-xl text-5xl font-bold leading-[1.15] text-on-background md:text-6xl">
                                 Reportes ciudadanos de seguridad en tu zona
                             </h1>
-                            <p className="max-w-xl text-lg leading-8 text-[#4d556b]">
+                            <p className="max-w-xl text-lg leading-7 text-tertiary-container">
                                 Consulta y reporta incidentes de forma responsable,
-                                anónima y basada en evidencia.
+                                anónima y basada en evidencia. Juntos construimos
+                                una ciudad más informada.
                             </p>
                         </div>
 
-                        <div className="flex flex-wrap gap-4">
-                            <a
-                                href="#mapa"
-                                className="rounded-2xl bg-[#004ac6] px-8 py-4 text-base font-semibold text-white shadow-[0px_8px_24px_rgba(0,74,198,0.18)] transition-all hover:-translate-y-0.5 hover:bg-[#003ea8]"
+                        <div className="flex flex-wrap gap-4 pt-4">
+                            <Link
+                                href="/view_map"
+                                className="rounded-xl bg-primary px-8 py-4 text-base font-semibold text-on-primary transition-all duration-150 hover:shadow-lg active:scale-95"
                             >
                                 Ver mapa
-                            </a>
-                            <a
-                                href="#reportar"
-                                className="rounded-2xl border border-[#c3c6d7] bg-white px-8 py-4 text-base font-semibold text-[#004ac6] transition-colors hover:bg-[#eef2f7]"
+                            </Link>
+                            <Link
+                                href="/report_incident_form"
+                                className="rounded-xl border-2 border-outline-variant px-8 py-4 text-base font-semibold text-primary transition-all duration-150 hover:bg-surface-container-low active:scale-95"
                             >
                                 Reportar incidente
-                            </a>
+                            </Link>
                         </div>
 
-                        <div className="flex items-start gap-3 rounded-2xl border border-[#d7dce4] bg-white/90 p-4 text-sm text-[#5d6472] shadow-[0px_4px_12px_rgba(15,23,42,0.05)]">
-                            <BellRing className="mt-0.5 h-5 w-5 shrink-0 text-[#004ac6]" />
-                            <p>
+                        <p className="flex items-center gap-2 text-sm font-semibold text-outline">
+                            <BellRing className="h-4 w-4 text-primary" />
+                            <span>
                                 Los reportes son ciudadanos y pueden estar pendientes
                                 de validación.
-                            </p>
-                        </div>
+                            </span>
+                        </p>
                     </div>
 
-                    <div className="relative">
-                        <div className="overflow-hidden rounded-[2rem] border border-[#d7dce4] bg-white shadow-[0px_20px_48px_rgba(15,23,42,0.12)]">
+                    <div className="relative w-full md:w-auto">
+                        <div className="rotate-2 overflow-hidden rounded-[1.75rem] shadow-2xl transition-transform duration-500 hover:rotate-0">
                             <img
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOYQHt8W2aL00Q9-EpqVrujpSYJzpUxaQ3xCMDrnTI6Kw3XV2KxwIPilU56C8Bxtkg2u20ZmKOqsL8Yq7iJOmLbsJv-7uDgwIPUb2NolNtDpOTOBMVNKPJYGa66s7YFsh5kCnkyf0kZaPNDw6yMn2cclGt91QoyfTrWzPHOPgQggU8aJ_ppxm2jufvbMa1vxUSGJEnzsewfA8g7wYwFy6Qua4J95SMtl4bniphw0L2MWXuLuTafYLX7ObPDgEuIlbGnSTnVnjlZrA"
                                 alt="Vista de mapa ciudadano con marcadores y zonas urbanas"
                                 className="aspect-square w-full object-cover"
                             />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
                         </div>
 
-                        <div className="absolute -bottom-6 -left-4 max-w-xs rounded-3xl border border-[#d7dce4] bg-white p-5 shadow-[0px_12px_24px_rgba(15,23,42,0.10)] md:-left-8">
+                        <div className="landing-overlay-shadow absolute -bottom-6 -left-4 flex max-w-xs animate-pulse items-center gap-4 rounded-2xl border border-outline-variant bg-surface-container-lowest/82 p-6 backdrop-blur-sm md:-left-6">
                             <div className="flex items-center gap-4">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ffdad6] text-[#ba1a1a]">
-                                    <CircleAlert className="h-6 w-6" />
+                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-error-container text-error">
+                                    <AlertTriangle className="h-5 w-5 fill-current text-[#9f1239]" strokeWidth={2.4} />
                                 </div>
                                 <div>
-                                    <p className="font-semibold text-[#191c1e]">
+                                    <p className="text-sm font-medium text-on-background">
                                         Reporte reciente
                                     </p>
-                                    <p className="text-sm text-[#5d6472]">
-                                        Hace 5 minutos en zona centro
+                                    <p className="text-xs font-semibold text-outline">
+                                        Hace 5 minutos en Zona Centro
                                     </p>
                                 </div>
                             </div>
@@ -148,16 +151,16 @@ export default function Welcome() {
 
             <section
                 id="mapa"
-                className="bg-[#eef2f7] px-6 py-24"
+                className="bg-surface-container-low px-6 py-24"
             >
                 <div className="mx-auto w-full max-w-7xl">
                     <div className="mb-12 max-w-2xl">
-                        <h2 className="text-3xl font-semibold tracking-[-0.01em] text-[#191c1e]">
+                        <h2 className="text-4xl font-semibold text-on-background">
                             Herramientas de participación
                         </h2>
-                        <p className="mt-3 text-lg text-[#4d556b]">
-                            Tecnología cívica sobria para reportar, consultar y
-                            entender información ciudadana con contexto.
+                        <p className="mt-3 text-base text-tertiary-container">
+                            Tecnología civic-tech diseñada para la prevención y
+                            respuesta comunitaria.
                         </p>
                     </div>
 
@@ -170,60 +173,70 @@ export default function Welcome() {
                                     key={card.title}
                                     className={[
                                         card.className,
-                                        'relative overflow-hidden rounded-[2rem] border border-[#d7dce4] bg-white p-8 shadow-[0px_4px_12px_rgba(15,23,42,0.05)]',
+                                        'group landing-soft-shadow relative flex flex-col justify-between overflow-hidden rounded-[1.75rem] border border-outline-variant/30 bg-surface-container-lowest p-8',
                                     ].join(' ')}
                                 >
                                     <div className="relative z-10 max-w-md">
-                                        <span className="mb-5 inline-flex rounded-2xl bg-[#dbe1ff] p-3 text-[#004ac6]">
+                                        <span className="mb-4 inline-flex rounded-xl bg-primary/10 p-3 text-primary">
                                             <Icon className="h-8 w-8" />
                                         </span>
-                                        <h3 className="text-2xl font-semibold text-[#191c1e]">
+                                        <h3 className="mb-2 text-2xl font-semibold text-on-background">
                                             {card.title}
                                         </h3>
-                                        <p className="mt-3 leading-7 text-[#5d6472]">
+                                        <p className="text-base leading-7 text-outline">
                                             {card.description}
                                         </p>
                                     </div>
-                                    <div className="absolute -bottom-8 -right-6 text-[#dbe1ff]">
-                                        <Icon className="h-32 w-32" strokeWidth={1.25} />
-                                    </div>
+                                    {card.title === 'Mapa de reportes' ? (
+                                        <>
+                                            <Link
+                                                href="/view_map"
+                                                className="mt-8 flex items-center font-semibold text-primary transition-transform group-hover:translate-x-2"
+                                            >
+                                                Explorar mapa completo
+                                                <ArrowRight className="ml-2 h-5 w-5" />
+                                            </Link>
+                                            <div className="absolute bottom-0 right-0 opacity-10 transition-opacity group-hover:opacity-20">
+                                                <Map className="h-52 w-52" strokeWidth={1.2} />
+                                            </div>
+                                        </>
+                                    ) : null}
                                 </article>
                             );
                         })}
 
-                        <article className="md:col-span-12 flex flex-col items-start justify-between gap-6 rounded-[2rem] bg-[#004ac6] p-8 text-white shadow-[0px_8px_24px_rgba(0,74,198,0.18)] md:flex-row md:items-center">
+                        <article className="md:col-span-12 flex flex-col items-center justify-between gap-8 rounded-[1.75rem] bg-primary p-8 text-on-primary md:flex-row">
                             <div className="flex items-start gap-5">
-                                <div className="rounded-2xl bg-white/18 p-4">
+                                <div className="rounded-2xl bg-white/20 p-4">
                                     <BellRing className="h-8 w-8" />
                                 </div>
                                 <div>
                                     <h3 className="text-2xl font-semibold">
                                         Alertas por zona
                                     </h3>
-                                    <p className="mt-2 max-w-2xl text-white/82">
-                                        La arquitectura quedará lista para activar
-                                        alertas en una fase posterior, sin meter esa
-                                        lógica todavía al MVP.
+                                    <p className="mt-2 max-w-2xl text-base text-white/80">
+                                        Recibe notificaciones inmediatas si se reporta
+                                        actividad inusual en tus rutas frecuentes.
                                     </p>
                                 </div>
                             </div>
 
-                            <span className="rounded-full border border-white/25 px-4 py-2 text-sm font-semibold text-white/90">
-                                Próximamente
-                            </span>
+                            <button className="rounded-xl bg-surface-container-lowest px-8 py-3 font-bold whitespace-nowrap text-primary transition-all hover:scale-105">
+                                Activar alertas
+                            </button>
                         </article>
                     </div>
                 </div>
             </section>
 
             <section id="reportar" className="px-6 py-24">
-                <div className="mx-auto w-full max-w-7xl rounded-[2rem] border border-[#d7dce4] bg-white p-8 shadow-[0px_12px_24px_rgba(15,23,42,0.06)] md:p-10">
+                <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-[1.75rem] border border-outline-variant/30 bg-surface-container-lowest p-8 shadow-[0px_4px_12px_rgba(15,23,42,0.05)] md:p-10">
                     <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr]">
                         <div>
-                            <h2 className="text-3xl font-semibold tracking-[-0.01em] text-[#191c1e]">
+                            <h2 className="text-4xl font-semibold text-on-background">
                                 Cómo funciona el reporte ciudadano
                             </h2>
-                            <p className="mt-4 max-w-2xl text-lg leading-8 text-[#4d556b]">
+                            <p className="mt-4 max-w-2xl text-lg leading-8 text-tertiary-container">
                                 AlertaZona no confirma delitos automáticamente. La
                                 plataforma muestra reportes ciudadanos con diferentes
                                 niveles de validación y protege la ubicación exacta de
@@ -231,11 +244,11 @@ export default function Welcome() {
                             </p>
                         </div>
 
-                        <div className="rounded-[1.5rem] bg-[#eef2f7] p-6">
-                            <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#004ac6]">
+                        <div className="rounded-2xl bg-surface-container-low p-6">
+                            <p className="text-sm font-semibold uppercase tracking-[0.08em] text-primary">
                                 Principios del MVP
                             </p>
-                            <ul className="mt-4 space-y-3 text-sm leading-7 text-[#4d556b]">
+                            <ul className="mt-4 space-y-3 text-sm leading-7 text-tertiary-container">
                                 <li>Reporte responsable y de buena fe.</li>
                                 <li>Ubicación pública aproximada, no exacta.</li>
                                 <li>Evidencia opcional y moderada antes de publicar.</li>
@@ -243,16 +256,20 @@ export default function Welcome() {
                             </ul>
                         </div>
                     </div>
+
+                    <div className="pointer-events-none absolute bottom-4 right-6 hidden opacity-[0.14] md:block">
+                        <Compass className="h-44 w-44 animate-[spin_24s_linear_infinite] text-slate-400" strokeWidth={1.2} />
+                    </div>
                 </div>
             </section>
 
             <section id="admin" className="px-6 pb-24">
                 <div className="mx-auto w-full max-w-7xl">
-                    <div className="mb-10 text-center">
-                        <h2 className="text-3xl font-semibold tracking-[-0.01em] text-[#191c1e]">
+                    <div className="mb-16 text-center">
+                        <h2 className="text-4xl font-semibold text-on-background">
                             Estado de los reportes
                         </h2>
-                        <p className="mt-3 text-lg text-[#5d6472]">
+                        <p className="mt-3 text-base text-outline">
                             Transparencia sobre la etapa en la que se encuentra cada
                             reporte ciudadano.
                         </p>
@@ -266,7 +283,7 @@ export default function Welcome() {
                                 <article
                                     key={status.title}
                                     className={[
-                                        'rounded-[1.5rem] border border-[#d7dce4] border-l-4 bg-white p-6 text-center shadow-[0px_4px_12px_rgba(15,23,42,0.05)]',
+                                        'rounded-2xl border border-slate-200 border-l-4 bg-surface-container-lowest p-6 text-center shadow-sm',
                                         status.accent,
                                     ].join(' ')}
                                 >
@@ -276,10 +293,10 @@ export default function Welcome() {
                                             status.iconClassName,
                                         ].join(' ')}
                                     />
-                                    <h3 className="font-semibold text-[#191c1e]">
+                                    <h3 className="mb-1 font-bold text-on-background">
                                         {status.title}
                                     </h3>
-                                    <p className="mt-2 text-sm leading-6 text-[#5d6472]">
+                                    <p className="text-xs leading-5 text-outline">
                                         {status.description}
                                     </p>
                                 </article>
