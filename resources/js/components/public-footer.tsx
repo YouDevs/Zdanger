@@ -6,19 +6,19 @@ const footerLinks = [
 
 export default function PublicFooter() {
     return (
-        <footer className="border-t border-[#d7dce4] bg-[#f3f6fa]">
-            <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 py-10 text-sm text-[#5d6472] md:flex-row md:items-center md:justify-between">
-                <div>
-                    <p className="font-semibold text-[#004ac6]">AlertaZona</p>
+        <footer className="mt-auto border-t border-slate-200 bg-slate-50">
+            <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-6 px-8 py-12 text-xs text-slate-500 md:flex-row">
+                <div className="text-center md:text-left">
+                    <p className="mb-1 font-bold text-blue-600">AlertaZona</p>
                     <p>© 2026 AlertaZona. Plataforma cívica de reportes ciudadanos.</p>
                 </div>
 
-                <nav className="flex flex-wrap gap-5">
+                <nav className="flex flex-wrap justify-center gap-6">
                     {footerLinks.map((link) => (
                         <a
                             key={link.label}
                             href={link.href}
-                            className="transition-colors hover:text-[#004ac6]"
+                            className="transition-colors hover:text-blue-500"
                         >
                             {link.label}
                         </a>

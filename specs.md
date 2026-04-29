@@ -7,28 +7,40 @@ IMPORTANTE:
 Las vistas de Stitch son referencia visual, no especificación funcional exacta.
 Codex debe reutilizar la intención visual, estructura general y estilo, pero debe corregir textos, nombres, datos falsos, idioma y lógica de producto.
 
+Nota de implementación actual:
+- La carpeta de referencia real en este repo es `resources/views/demo`.
+- Ya existe una base pública en React/Inertia para:
+  - landing `/`
+  - mapa `/view_map`
+  - formulario `/report_incident_form`
+- El layout público ya está separado y reutilizable.
+- El tema por defecto debe permanecer en `light`.
+
 ## Nombre del producto
 Usar temporalmente: AlertaZona
-
-Ignorar cualquier aparición de:
-- AguasPorQueAquiAsaltan
-- Civic Panel
-- Civic Safety Initiative
 
 ## Idioma
 Toda la interfaz debe estar en español.
 
 ## Stack
-- Laravel 12
-- Inertia.js
-- React
+- Laravel 13
+- Inertia
+- React 19
 - Tailwind CSS
 - PostgreSQL preferido
 - SQLite permitido para MVP local
-- Laravel Breeze para autenticación
 - Storage nativo de Laravel para evidencias
 - Mapa inicialmente puede ser placeholder
 - Preparar arquitectura para Google Maps o Mapbox después
+
+Estado actual del frontend:
+- `welcome.tsx` implementa la landing pública.
+- `view_map.tsx` implementa el mapa placeholder y panel de detalle.
+- `report_incident_form.tsx` implementa el formulario público de reporte.
+- `PublicHeader`, `PublicFooter` y `PublicLayout` ya existen y deben reutilizarse.
+- Componentes públicos ya creados:
+  - `StatusBadge`
+  - `ConfidenceBadge`
 
 ## Diseño
 Usar `DESIGN.md` como fuente principal de estilo:
@@ -93,6 +105,20 @@ No implementar todavía:
 - Civic Data API
 - Analytics reales
 
+Estado actual:
+- Implementada en `/`.
+- Debe conservar:
+  - header translúcido
+  - hero con imagen rotada y hover
+  - callout translúcido de reporte reciente
+  - brújula decorativa
+  - sección de cards
+  - sección de estados
+- Navegación activa:
+  - `Ver mapa` -> `/view_map`
+  - `Explorar mapa completo` -> `/view_map`
+  - `Reportar incidente` -> `/report_incident_form`
+
 ### 2. Mapa público
 Basarse en la vista de Stitch del mapa.
 
@@ -123,6 +149,19 @@ Reglas:
 - Mostrar ubicación aproximada.
 - El mapa puede ser placeholder visual al inicio.
 - Preparar componente para futura integración con Google Maps o Mapbox.
+
+Estado actual:
+- Implementado en `/view_map`.
+- Ya existe layout general con:
+  - sidebar de filtros
+  - canvas placeholder de mapa
+  - markers visuales
+  - panel derecho de detalle
+- Aún es mayormente estático y visual.
+- Próximo paso funcional esperado:
+  - conectar datos reales vía props/controladores
+  - transformar filtros en estado real
+  - sustituir textos demo por data de incidentes
 
 ### 3. Formulario de reporte
 Basarse en la vista de Stitch del formulario, pero simplificar.
@@ -160,6 +199,17 @@ Tipos iniciales:
 - vandalismo
 - zona_riesgo
 - otro
+
+Estado actual:
+- Implementado en `/report_incident_form`.
+- Ya existe como pantalla única con secciones.
+- Aún no está conectado a persistencia real.
+- Mantener esta dirección de implementación:
+  - sin wizard funcional en esta etapa
+  - UX sobria
+  - ubicación por placeholder
+  - evidencia opcional
+  - anonimato activado por defecto
 
 ### 4. Admin / Moderación
 Basarse en la vista de Stitch de admin.
@@ -292,8 +342,8 @@ Máximo 100.
 
 Públicas:
 - GET /
-- GET /map
-- GET /reports/create
+- GET /view_map
+- GET /report_incident_form
 - POST /reports
 - GET /reports/{incident}
 
@@ -307,10 +357,17 @@ Admin:
 - PATCH /admin/reports/{incident}/status
 - PATCH /admin/evidences/{evidence}/status
 
+Rutas implementadas actualmente:
+- `GET /` -> `welcome`
+- `GET /view_map` -> `view_map`
+- `GET /report_incident_form` -> `report_incident_form`
+- `GET /dashboard` -> `dashboard` autenticado
+
 ## Componentes React/Inertia sugeridos
 
 Layout:
 - AppLayout
+- PublicLayout
 - PublicHeader
 - PublicFooter
 
@@ -320,7 +377,7 @@ Landing:
 - ReportStatusSection
 
 Mapa:
-- IncidentMapPage
+- ViewMapPage
 - IncidentFilters
 - IncidentMapPlaceholder
 - IncidentMarker
@@ -329,6 +386,7 @@ Mapa:
 - StatusBadge
 
 Reporte:
+- ReportIncidentFormPage
 - IncidentForm
 - IncidentTypeSelector
 - LocationPickerPlaceholder
@@ -385,6 +443,14 @@ Implementar:
 - badges de estado
 - cálculo inicial de confidence_score
 - subida básica de evidencia usando Laravel Storage
+
+Ya implementado visualmente:
+- landing pública funcional
+- navegación pública entre landing, mapa y formulario
+- layout público base
+- badges reutilizables para estado y confianza
+- tema claro como default
+- adaptación inicial de las vistas Stitch a TSX/Inertia
 
 No implementar todavía:
 - Google Maps real
