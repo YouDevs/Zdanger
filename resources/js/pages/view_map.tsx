@@ -4,14 +4,12 @@ import {
     AlertTriangle,
     ChevronRight,
     Filter,
-    LocateFixed,
     MapPin,
-    Minus,
-    Plus,
     ShieldAlert,
     TriangleAlert,
     X,
 } from 'lucide-react';
+import IncidentMap from '@/components/public/incident-map';
 import ConfidenceBadge from '@/components/public/confidence-badge';
 import StatusBadge from '@/components/public/status-badge';
 import { Button } from '@/components/ui/button';
@@ -25,49 +23,18 @@ import {
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { view_map } from '@/routes';
-
-type IncidentMapFilters = {
-    types: string[];
-    date_range: string;
-    neighborhood: string | null;
-    status: string | null;
-    min_confidence: number;
-};
-
-type FilterOption = {
-    value: string;
-    label: string;
-};
-
-type MapIncident = {
-    id: number;
-    type: string;
-    type_label: string;
-    title: string | null;
-    description: string;
-    approximate_address: string | null;
-    neighborhood: string | null;
-    city: string | null;
-    state: string | null;
-    occurred_at: string | null;
-    occurred_at_human: string | null;
-    occurred_at_display: string | null;
-    status: string;
-    status_label: string;
-    confidence_score: number;
-    confirmations_count: number;
-    approved_evidence_count: number;
-    has_approved_evidence: boolean;
-    marker: {
-        top: string;
-        left: string;
-    };
-};
+import type {
+    FilterOption,
+    IncidentMapFilters,
+    MapIncident,
+    PublicIncidentMapPayload,
+} from '@/types';
 
 type ViewMapProps = {
     incidents: MapIncident[];
     selectedIncidentId: number | null;
     filters: IncidentMapFilters;
+    map: PublicIncidentMapPayload;
     filterOptions: {
         types: FilterOption[];
         dateRanges: FilterOption[];
@@ -80,6 +47,7 @@ export default function ViewMap({
     incidents,
     selectedIncidentId,
     filters,
+    map,
     filterOptions,
 }: ViewMapProps) {
     const [activeIncidentId, setActiveIncidentId] = useState<number | null>(selectedIncidentId);
@@ -303,16 +271,14 @@ export default function ViewMap({
                 </aside>
 
                 <section className="relative flex-1 overflow-hidden bg-[#e2e8f0]">
-                    <img
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc1w3ZYwtaihAB46MqD1TNjz50LH_DNwedRZwk6njdrlVnK_EjVuzJXN56KEDGPopiFjNzcFZG9U9MB0QJlbVTSU_q8P-amrJe6NjGq88cT1PrQkgWBjPsFsNJ3eereda7sypGUKpKSkb-FPra5rNtbvFuMQylyck_34Kl8AMrLcxl9EziNE6f3TT48oEqEZA7BXJeRuKxund4XvvRoxCbQQsVKBbuvOc01GFMlPQ-BGedqdEnNzjDU42BrQhj2RaEEaxmecXvBxY"
-                        alt="Mapa de referencia de la ciudad"
-                        className="absolute inset-0 h-full w-full object-cover grayscale-[0.18] contrast-[0.95] brightness-[1.03]"
+                    <IncidentMap
+                        mapData={map}
+                        activeIncidentId={activeIncident?.id ?? null}
+                        onSelectIncident={setActiveIncidentId}
                     />
 
-                    <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:20px_20px]" />
-
                     {incidents.length === 0 ? (
-                        <div className="absolute inset-0 flex items-center justify-center p-8">
+                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-8">
                             <div className="max-w-md rounded-3xl border border-outline-variant bg-white/90 p-8 text-center shadow-xl backdrop-blur-sm">
                                 <TriangleAlert className="mx-auto h-10 w-10 text-primary" />
                                 <h2 className="mt-4 text-2xl font-semibold text-on-surface">
@@ -325,65 +291,6 @@ export default function ViewMap({
                             </div>
                         </div>
                     ) : null}
-
-                    <div className="absolute inset-0">
-                        {incidents.map((incident) => {
-                            const markerTone = markerToneClass(incident.status);
-                            const isActive = activeIncident?.id === incident.id;
-
-                            return (
-                                <button
-                                    key={incident.id}
-                                    type="button"
-                                    onClick={() => setActiveIncidentId(incident.id)}
-                                    className="pointer-events-auto absolute cursor-pointer"
-                                    style={{ top: incident.marker.top, left: incident.marker.left }}
-                                >
-                                    <div className="group relative">
-                                        {isActive ? (
-                                            <div className="absolute -left-2 -top-2 h-8 w-8 animate-ping rounded-full bg-primary/20" />
-                                        ) : null}
-                                        <MapPin
-                                            className={cn(
-                                                isActive ? 'h-10 w-10 drop-shadow-lg' : 'h-8 w-8 drop-shadow-md',
-                                                markerTone,
-                                            )}
-                                            fill="currentColor"
-                                        />
-                                        <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded-lg border border-outline-variant bg-white px-3 py-1.5 opacity-0 shadow-xl transition-opacity group-hover:opacity-100">
-                                            <p className="text-xs font-bold text-on-surface">
-                                                {incident.type_label}
-                                            </p>
-                                            <p className="text-[11px] text-outline">
-                                                {incident.occurred_at_human ?? 'Fecha no especificada'}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </button>
-                            );
-                        })}
-                    </div>
-
-                    <div className="absolute bottom-8 left-8 flex flex-col gap-2">
-                        <button
-                            type="button"
-                            className="rounded-xl bg-white p-3 text-on-surface shadow-lg transition-transform hover:bg-slate-50 active:scale-90"
-                        >
-                            <Plus className="h-5 w-5" />
-                        </button>
-                        <button
-                            type="button"
-                            className="rounded-xl bg-white p-3 text-on-surface shadow-lg transition-transform hover:bg-slate-50 active:scale-90"
-                        >
-                            <Minus className="h-5 w-5" />
-                        </button>
-                        <button
-                            type="button"
-                            className="mt-4 rounded-xl bg-white p-3 text-primary shadow-lg transition-transform hover:bg-slate-50 active:scale-90"
-                        >
-                            <LocateFixed className="h-5 w-5" />
-                        </button>
-                    </div>
                 </section>
 
                 <aside className="hidden w-[400px] shrink-0 flex-col border-l border-outline-variant bg-surface-container-lowest shadow-[-10px_0_20px_rgba(0,0,0,0.05)] xl:flex">
@@ -528,20 +435,6 @@ function statusTone(status: string): 'pending' | 'unverified' | 'community' | 'e
             return 'confirmed';
         default:
             return 'pending';
-    }
-}
-
-function markerToneClass(status: string): string {
-    switch (status) {
-        case 'community_validated':
-            return 'text-primary';
-        case 'evidence_validated':
-        case 'externally_confirmed':
-            return 'text-emerald-500';
-        case 'visible_unverified':
-            return 'text-amber-500';
-        default:
-            return 'text-error';
     }
 }
 
