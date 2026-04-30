@@ -38,14 +38,16 @@ Toda la interfaz debe estar en español.
 - PostgreSQL preferido
 - SQLite permitido para MVP local
 - Storage nativo de Laravel para evidencias
-- Mapa inicialmente puede ser placeholder
-- Preparar arquitectura para Google Maps o Mapbox después
+- Leaflet para visor web del mapa público
+- OpenStreetMap como proveedor base de tiles en esta etapa
+- Mantener la arquitectura abierta por si más adelante conviene cambiar de proveedor
 
 Estado actual del frontend:
 - `welcome.tsx` implementa la landing pública.
 - `view_map.tsx` consume datos reales vía props Inertia y aplica filtros reales.
 - `report_incident_form.tsx` ya envía reportes reales con Inertia.
 - `PublicHeader`, `PublicFooter` y `PublicLayout` ya existen y deben reutilizarse.
+- `incident-map.tsx` ya renderiza el mapa público con `Leaflet + OpenStreetMap`.
 - Componentes públicos ya creados:
   - `StatusBadge`
   - `ConfidenceBadge`
@@ -155,26 +157,36 @@ Detalle del reporte:
 Reglas:
 - No mostrar dirección exacta públicamente.
 - Mostrar ubicación aproximada.
-- El mapa puede ser placeholder visual al inicio.
-- Preparar componente para futura integración con Google Maps o Mapbox.
+- El mapa debe renderizar datos reales sobre un visor funcional.
+- Mantener independencia razonable del proveedor para facilitar cambios futuros.
 
 Estado actual:
 - Implementado en `/view_map`.
 - Ya existe layout general con:
   - sidebar de filtros
-  - canvas placeholder de mapa
+  - mapa real interactivo
   - markers derivados de incidentes reales
   - panel derecho de detalle
 - Ya no es estático:
   - consume reportes públicos reales vía controlador
   - aplica filtros por tipo, fecha, colonia, estado y confianza mínima
   - sustituye textos demo por data de incidentes
+- Implementación actual del visor:
+  - `Leaflet + OpenStreetMap`
+  - viewport ajustado a incidentes visibles
+  - puntos aproximados derivados de coordenadas públicas seguras
+  - base lista para superponer zonas/heat layers
+- Nota técnica:
+  - se intentó una integración inicial con `Mapbox`
+  - el token, estilos y carga base respondían correctamente
+  - en el entorno local el canvas seguía en gris aun con estado `loaded`
+  - por pragmatismo del MVP se cambió el visor a `Leaflet + OpenStreetMap`
 - Mantener por ahora:
-  - mapa visual placeholder
   - layout de tres columnas en desktop
 - Próximo paso funcional esperado:
   - `POST /reports/{incident}/votes`
   - detalle público `GET /reports/{incident}`
+  - zonas de calor o superposición visual de densidad
   - mejor experiencia móvil del mapa
 
 ### 3. Formulario de reporte
@@ -398,7 +410,7 @@ Landing:
 Mapa:
 - ViewMapPage
 - IncidentFilters
-- IncidentMapPlaceholder
+- IncidentMap
 - IncidentMarker
 - IncidentDetailPanel
 - ConfidenceBadge
@@ -481,6 +493,8 @@ Ya implementado:
 - `POST /reports` con validación y storage privado
 - formulario público conectado a persistencia real
 - mapa público conectado a datos reales y filtros funcionales
+- mapa público renderizado con `Leaflet + OpenStreetMap`
+- coordenadas públicas aproximadas con protección de ubicación exacta
 
 Pendiente principal de esta entrega:
 - interacciones públicas de votos
@@ -488,8 +502,7 @@ Pendiente principal de esta entrega:
 - admin / moderación
 
 No implementar todavía:
-- Google Maps real
-- Mapbox real
+- cambio de proveedor de mapas
 - notificaciones push
 - analytics
 - API pública
