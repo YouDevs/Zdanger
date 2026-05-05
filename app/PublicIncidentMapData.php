@@ -87,15 +87,14 @@ class PublicIncidentMapData
     }
 
     /**
-     * @return array{incident: array<string, mixed>, map_feature: ?array<string, mixed>}
+     * @return array<string, mixed>
      */
-    private function mapIncident(Incident $incident): array
+    public function incidentPayload(Incident $incident): array
     {
-        $publicCoordinates = $this->publicCoordinatesFor($incident);
         $confirmationsCount = $this->confirmationsCount($incident);
         $approvedEvidenceCount = $this->approvedEvidenceCount($incident);
-        $hasApprovedEvidence = $approvedEvidenceCount > 0;
-        $incidentPayload = [
+
+        return [
             'id' => $incident->id,
             'type' => $incident->type,
             'type_label' => $this->typeLabel($incident->type),
@@ -113,8 +112,17 @@ class PublicIncidentMapData
             'confidence_score' => $incident->confidence_score,
             'confirmations_count' => $confirmationsCount,
             'approved_evidence_count' => $approvedEvidenceCount,
-            'has_approved_evidence' => $hasApprovedEvidence,
+            'has_approved_evidence' => $approvedEvidenceCount > 0,
         ];
+    }
+
+    /**
+     * @return array{incident: array<string, mixed>, map_feature: ?array<string, mixed>}
+     */
+    private function mapIncident(Incident $incident): array
+    {
+        $publicCoordinates = $this->publicCoordinatesFor($incident);
+        $incidentPayload = $this->incidentPayload($incident);
 
         return [
             'incident' => $incidentPayload,

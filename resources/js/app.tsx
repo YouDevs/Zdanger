@@ -24,6 +24,7 @@ createInertiaApp({
     layout: (name) => {
         switch (true) {
             case ['welcome', 'view_map', 'report_incident_form'].includes(name):
+            case name.startsWith('reports/'):
                 return PublicLayout;
             case name.startsWith('auth/'):
                 return AuthLayout;
