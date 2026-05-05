@@ -32,6 +32,21 @@ export type MapIncident = {
     has_approved_evidence: boolean;
 };
 
+export type ApprovedEvidence = {
+    id: number;
+    file_type: string | null;
+    original_filename: string | null;
+    mime_type: string | null;
+    size: number | null;
+    created_at: string | null;
+};
+
+export type PublicIncidentDetail = MapIncident & {
+    public_coordinates: PublicMapCenter | null;
+    false_reports_count: number;
+    approved_evidences: ApprovedEvidence[];
+};
+
 export type PublicMapCenter = {
     latitude: number;
     longitude: number;

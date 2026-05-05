@@ -1,4 +1,4 @@
-import { Head, router } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import {
     AlertTriangle,
@@ -23,6 +23,7 @@ import {
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { view_map } from '@/routes';
+import reports from '@/routes/reports';
 import type {
     FilterOption,
     IncidentMapFilters,
@@ -51,6 +52,7 @@ export default function ViewMap({
     filterOptions,
 }: ViewMapProps) {
     const [activeIncidentId, setActiveIncidentId] = useState<number | null>(selectedIncidentId);
+    const [submittingVoteType, setSubmittingVoteType] = useState<string | null>(null);
 
     useEffect(() => {
         setActiveIncidentId(selectedIncidentId);
@@ -88,6 +90,24 @@ export default function ViewMap({
             : [...filters.types, value];
 
         submitFilters({ types });
+    };
+
+    const submitVote = (voteType: 'confirm' | 'false_report') => {
+        if (!activeIncident) {
+            return;
+        }
+
+        setSubmittingVoteType(voteType);
+
+        router.post(
+            reports.votes.store.url(activeIncident.id),
+            { vote_type: voteType },
+            {
+                preserveScroll: true,
+                preserveState: true,
+                onFinish: () => setSubmittingVoteType(null),
+            },
+        );
     };
 
     return (
@@ -376,23 +396,30 @@ export default function ViewMap({
                                 </div>
 
                                 <div className="mt-10 space-y-3">
-                                    <Button className="h-14 w-full rounded-2xl text-sm font-medium shadow-md">
+                                    <Button
+                                        type="button"
+                                        disabled={submittingVoteType !== null}
+                                        onClick={() => submitVote('confirm')}
+                                        className="h-14 w-full rounded-2xl text-sm font-medium shadow-md"
+                                    >
                                         Yo tambien lo vi
                                     </Button>
                                     <div className="grid grid-cols-2 gap-3">
                                         <button
                                             type="button"
+                                            disabled={submittingVoteType !== null}
+                                            onClick={() => submitVote('false_report')}
                                             className="flex items-center justify-center gap-2 rounded-2xl bg-surface-container-high py-3 text-sm font-medium text-on-surface-variant transition-all hover:bg-surface-container-highest active:scale-95"
                                         >
                                             Marcar falso
                                         </button>
-                                        <button
-                                            type="button"
+                                        <Link
+                                            href={reports.show(activeIncident.id).url}
                                             className="flex items-center justify-center gap-2 rounded-2xl bg-surface-container-high py-3 text-sm font-medium text-on-surface-variant transition-all hover:bg-surface-container-highest active:scale-95"
                                         >
                                             Ver detalles
                                             <ChevronRight className="h-4 w-4" />
-                                        </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
