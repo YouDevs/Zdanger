@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ModerationEvidenceStatusController;
+use App\Http\Controllers\Admin\ModerationReportController;
 use App\Http\Controllers\IncidentReportController;
 use App\Http\Controllers\IncidentVoteController;
 use App\Http\Controllers\PublicIncidentMapController;
@@ -18,6 +20,10 @@ Route::post('/reports/{incident}/votes', [IncidentVoteController::class, 'store'
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
+    Route::get('admin/reports', [ModerationReportController::class, 'index'])->name('admin.reports.index');
+    Route::get('admin/reports/{incident}', [ModerationReportController::class, 'show'])->name('admin.reports.show');
+    Route::patch('admin/reports/{incident}/status', [ModerationReportController::class, 'updateStatus'])->name('admin.reports.status.update');
+    Route::patch('admin/evidences/{evidence}/status', [ModerationEvidenceStatusController::class, 'update'])->name('admin.evidences.status.update');
 });
 
 require __DIR__.'/settings.php';

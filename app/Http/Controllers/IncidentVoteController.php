@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Incidents\RegisterIncidentVote;
 use App\Enums\IncidentStatus;
 use App\Enums\IncidentVoteType;
 use App\Http\Requests\StoreIncidentVoteRequest;
 use App\Models\Incident;
-use App\Models\IncidentStatusLog;
-use App\Models\IncidentVote;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class IncidentVoteController extends Controller
@@ -25,62 +23,23 @@ class IncidentVoteController extends Controller
     /**
      * Store or update a vote for a public incident.
      */
-    public function store(StoreIncidentVoteRequest $request, Incident $incident): RedirectResponse
-    {
+    public function store(
+        StoreIncidentVoteRequest $request,
+        Incident $incident,
+        RegisterIncidentVote $registerIncidentVote,
+    ): RedirectResponse {
         $incident = Incident::query()
             ->whereKey($incident->getKey())
             ->where('is_public', true)
             ->whereIn('status', self::VOTABLE_STATUSES)
             ->firstOrFail();
 
-        DB::transaction(function () use ($request, $incident): void {
-            $attributes = ['incident_id' => $incident->id];
-
-            if ($request->user() !== null) {
-                $attributes['user_id'] = $request->user()->id;
-            } else {
-                $attributes['user_id'] = null;
-                $attributes['ip_hash'] = $this->hashedIp($request->ip());
-            }
-
-            $values = [
-                'vote_type' => $request->enum('vote_type', IncidentVoteType::class),
-            ];
-
-            if (array_key_exists('ip_hash', $attributes)) {
-                $values['ip_hash'] = $attributes['ip_hash'];
-            }
-
-            IncidentVote::query()->updateOrCreate($attributes, $values);
-
-            $freshIncident = $incident->fresh(['votes', 'evidences']);
-
-            if ($freshIncident === null) {
-                return;
-            }
-
-            if (
-                $freshIncident->confirmationsCount() >= 2 &&
-                in_array($freshIncident->status, [IncidentStatus::Pending, IncidentStatus::VisibleUnverified], true)
-            ) {
-                $previousStatus = $freshIncident->status;
-
-                $freshIncident->forceFill([
-                    'status' => IncidentStatus::CommunityValidated,
-                    'reviewed_at' => now(),
-                ])->save();
-
-                IncidentStatusLog::create([
-                    'incident_id' => $freshIncident->id,
-                    'previous_status' => $previousStatus,
-                    'new_status' => IncidentStatus::CommunityValidated,
-                    'changed_by' => null,
-                    'reason' => 'El reporte alcanzo validacion por comunidad mediante votos publicos.',
-                ]);
-            }
-
-            $freshIncident->refreshConfidenceScore();
-        });
+        $registerIncidentVote->execute(
+            $incident,
+            $request->enum('vote_type', IncidentVoteType::class),
+            $request->user(),
+            $request->ip(),
+        );
 
         Inertia::flash('toast', [
             'type' => 'success',
@@ -90,10 +49,5 @@ class IncidentVoteController extends Controller
         ]);
 
         return back();
-    }
-
-    private function hashedIp(?string $ipAddress): string
-    {
-        return hash_hmac('sha256', $ipAddress ?? 'unknown-ip', (string) config('app.key'));
     }
 }

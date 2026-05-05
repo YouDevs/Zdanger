@@ -16,9 +16,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ], [
             'name' => 'Test User',
-            'password' => 'password',
+            'password' => '1234abcd',
         ]);
 
-        $this->call(IncidentSeeder::class);
+        $this->call([
+            DemoUserSeeder::class,
+            IncidentSeeder::class,
+        ]);
     }
 }

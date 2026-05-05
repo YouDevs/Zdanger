@@ -1,6 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 import { Bell, CircleUserRound } from 'lucide-react';
-import { dashboard, login, register } from '@/routes';
+import { login, register } from '@/routes';
 
 type PublicHeaderProps = {
     currentNav?: 'mapa' | 'reportar' | 'admin' | null;
@@ -9,7 +9,7 @@ type PublicHeaderProps = {
 const navItems = [
     { label: 'Mapa', href: '/view_map', key: 'mapa' as const },
     { label: 'Reportar', href: '/report_incident_form', key: 'reportar' as const },
-    { label: 'Admin', href: '/dashboard', key: 'admin' as const },
+    { label: 'Admin', href: '/admin/reports', key: 'admin' as const },
 ];
 
 export default function PublicHeader({
@@ -49,7 +49,7 @@ export default function PublicHeader({
                 <div className="flex items-center gap-3">
                     {auth.user ? (
                         <Link
-                            href={dashboard()}
+                            href="/admin/reports"
                             className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-all duration-150 hover:bg-primary/90 active:scale-95"
                         >
                             Ir al panel
